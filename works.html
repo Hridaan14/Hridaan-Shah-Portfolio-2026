@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gallery | Hridaan Shah</title>
+    <meta name="description" content="A cinematic showcase of product poster designs by Hridaan Shah.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            position: relative;
+            background-color: #000;
+        }
+
+        .works-hero {
+            padding: 120px 0 20px;
+            /* High at the top */
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .works-hero h1 {
+            font-size: 6rem !important;
+            margin-bottom: 1.5rem !important;
+            /* Increased spacing as requested */
+            letter-spacing: -2px !important;
+            /* Relaxed from -4px to fix 'r' and 'y' spacing */
+            line-height: 0.9 !important;
+            font-weight: 700;
+        }
+
+        .works-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.2 !important;
+            opacity: 0.9;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            padding: 40px 0 100px;
+            max-width: 1250px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .work-card {
+            position: relative;
+            border-radius: 50px;
+            /* Slightly tighter radius */
+            /* Majestic rounded glass pane */
+            background: rgba(255, 255, 255, 0.08);
+            /* More opaque */
+            backdrop-filter: blur(25px);
+            /* Slightly more blur */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            /* More visible border */
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: border-color 0.5s ease;
+        }
+
+        .work-img-wrapper {
+            width: 100%;
+            aspect-ratio: 736/1041;
+            border-radius: 35px;
+            /* Inner framing */
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .work-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-info {
+            padding: 0 0.5rem;
+        }
+
+        .work-desc {
+            font-size: 1.15rem;
+            /* Larger text as requested */
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            letter-spacing: 0.3px;
+            margin: 0;
+        }
+
+        /* Majestic Alternating Aura Glow System */
+        .scrolling-aura {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aura-patch {
+            position: absolute;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            filter: blur(140px);
+            /* Slightly sharper blur for visibility */
+            opacity: 0.25;
+            /* Significantly boosted for "punchy" look from image */
+        }
+
+        .purple-top {
+            top: 0%;
+            left: -20%;
+            background: radial-gradient(circle, #660099 0%, transparent 80%);
+        }
+
+        .purple-top-right {
+            top: -5%;
+            right: -5%;
+            background: radial-gradient(circle, #440163 0%, transparent 80%);
+        }
+
+        .lime-mid-1 {
+            top: 25%;
+            right: -25%;
+            background: radial-gradient(circle, #a4ff00 0%, transparent 80%);
+        }
+
+        .purple-mid-1 {
+            top: 45%;
+            left: -15%;
+            background: radial-gradient(circle, #660099 0%, transparent 80%);
+        }
+
+        .lime-mid-2 {
+            top: 65%;
+            right: -20%;
+            background: radial-gradient(circle, #a4ff00 0%, transparent 80%);
+        }
+
+        .lime-bottom-left {
+            bottom: -5%;
+            left: -5%;
+            background: radial-gradient(circle, #a4ff00 0%, transparent 80%);
+        }
+
+        .purple-bottom {
+            top: 85%;
+            left: -10%;
+            background: radial-gradient(circle, #660099 0%, transparent 80%);
+        }
+
+        /* Final CTA Section Styles */
+        .works-cta {
+            text-align: center;
+            padding: 100px 0 150px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            /* Reduced spacing */
+            letter-spacing: -1px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .cta-button-final {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 3.5rem;
+            background: var(--gradient-neon);
+            /* Green main colour */
+            color: #000;
+            /* Dark text for clarity on green */
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(164, 255, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            /* No lining by default */
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .cta-button-final:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(164, 255, 0, 0.4);
+            /* Keep Lime Glow only */
+            border: 3px solid #440163;
+            /* Dark Purple Lining only on hover */
+            filter: brightness(1.1);
+        }
+
+        .cta-button-final::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button-final:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 992px) {
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 40px 2rem;
+            }
+
+            .works-hero h1 {
+                font-size: 3.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html"
+                    style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.8rem;">
+                    <span class="nav-logo">Hridaan Shah</span>
+                    <span class="nav-separator"></span>
+                    <span class="nav-tagline">Portfolio 2026</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#what-i-offer">What I Offer</a></li>
+                <li><a href="index.html#about-me">About Me</a></li>
+                <li><a href="index.html#contact">Contact Me</a></li>
+                <li><a href="works.html" class="nav-button">My Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Alternating Aura Glows -->
+    <div class="scrolling-aura">
+        <div class="aura-patch purple-top"></div>
+        <div class="aura-patch purple-top-right"></div>
+        <div class="aura-patch lime-mid-1"></div>
+        <div class="aura-patch purple-mid-1"></div>
+        <div class="aura-patch lime-mid-2"></div>
+        <div class="aura-patch lime-bottom-left"></div>
+        <div class="aura-patch purple-bottom"></div>
+    </div>
+
+    <main>
+        <div class="container">
+            <section class="works-hero">
+                <h1 class="reveal-text gradient-text"
+                    style="font-family: 'Outfit', sans-serif; font-weight: 700; letter-spacing: -2px;">
+                    The Gallery</h1>
+                <p class="reveal-text">A collection of high-impact, cinematic product posters designed with aura and
+                    precision.</p>
+            </section>
+
+            <section class="works-gallery">
+                <div class="works-grid">
+                    <!-- Row 1 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_lays.jpg" alt="Lay's Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Showcasing the ultimate crunch of Lay's classic chips through precise
+                                highlight management and cinematic focal points.</p>
+                        </div>
+                    </div>
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_fanta.jpg" alt="Fanta Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Capturing Fanta's high-energy berry rush using dynamic fluid physics
+                                and vibrant color theory to trigger refreshment.</p>
+                        </div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_mccafe.jpg" alt="McCafe Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Elevating McCafe's cool summer vibes by merging tropical 3D assets with
+                                calculated depth-of-field lighting.</p>
+                        </div>
+                    </div>
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_comet.jpg" alt="Comet Shoes Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Defining Comet's bold streetwear edge through neon glow mapping and
+                                high-contrast silhouette lighting.</p>
+                        </div>
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_davidoff.jpg" alt="Davidoff Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Translating Davidoff's aquatic luxury scent into visuals using deep
+                                oceanic palettes and complex texture layering.</p>
+                        </div>
+                    </div>
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_starbucks.jpg" alt="Starbucks Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Evoking pure cravings for Starbucks strawberry cheesecake through
+                                high-speed liquid splash dynamics and soft lighting.</p>
+                        </div>
+                    </div>
+                    <!-- Row 4 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_mamaearth.jpg" alt="Mamaearth Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Communicating Mamaearth's protective sun-kissed glow through precise
+                                warmth balancing and minimalist skincare composition.</p>
+                        </div>
+                    </div>
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_bournville.jpg" alt="Bournville Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Emphasizing Bournville's rich cocoa indulgence using sophisticated
+                                low-light palettes to evoke premium royal luxury.</p>
+                        </div>
+                    </div>
+                    <!-- Row 5 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_skybags.jpg" alt="Skybags Cinematic Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Applying high-speed motion blur and vibrant color balancing to define
+                                Skybags' youth-centric, adventurous travel identity.</p>
+                        </div>
+                    </div>
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_rolex.png" alt="Rolex Timeless Treasure Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Highlighting the emerald luxury of Rolex by contrasting sharp metal
+                                textures against organic crystalline structures with deep green atmospheric lighting.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Row 6 -->
+                    <div class="work-card reveal-text">
+                        <div class="work-img-wrapper">
+                            <img src="work_rayban.png" alt="Ray-Ban Made For The Sun Poster" class="work-img">
+                        </div>
+                        <div class="work-info">
+                            <p class="work-desc">Capturing the timeless summer aesthetic of Ray-Ban through golden hour
+                                warmth, sand texture detail, and sun-flare optics.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final CTA Section -->
+            <section class="works-cta reveal-text">
+                <h2 class="cta-text">Want to add your design in this gallery?</h2>
+                <a href="index.html#contact" class="cta-button-final">Contact Me</a>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
